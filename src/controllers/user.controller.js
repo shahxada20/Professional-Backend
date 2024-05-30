@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
         $or: [[username], {email}]
     })
     if (existedUser) {
-        throw new ApiError(409, "user with email and username alrady exists.")
+        throw new ApiError(409, "User with email and username alrady exists.")
     }
 
     // console.log(req.files); // checking if working 
@@ -44,7 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     
     if (!avatarLocalPath) {
-        throw new ApiError(400, "avatar file is required")
+        throw new ApiError(400, "Avatar file is required")
     }
 
     // upload to cloudinary
@@ -74,12 +74,12 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check for user creation
     if (!createdUser) {
-        throw new ApiError(500, "something went wrong while registering the user")
+        throw new ApiError(500, "Something went wrong while registering the user")
     }
 
     // return respone
     return res.status(201).json(
-        new ApiResponse(201, createdUser, "user registered successfully")
+        new ApiResponse(201, createdUser, "User registered successfully")
     )
 })
 
